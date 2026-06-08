@@ -36,14 +36,14 @@ export default function AdminBoard({ dogs }: { dogs: Dog[] }) {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-pink-600">
-          Perritos <span className="text-base font-normal text-stone-400">({dogs.length})</span>
+          Adopciones <span className="text-base font-normal text-stone-400">({dogs.length})</span>
         </h1>
         {!showNew && !editing && (
           <button
             onClick={() => setShowNew(true)}
             className="rounded-full bg-pink-500 px-4 py-2 font-semibold text-white transition hover:bg-pink-600"
           >
-            + Agregar perrito
+            + Cargar adopción
           </button>
         )}
       </div>
@@ -51,7 +51,7 @@ export default function AdminBoard({ dogs }: { dogs: Dog[] }) {
       {/* Form de nuevo */}
       {showNew && (
         <div className="rounded-2xl border border-pink-200 bg-white p-6 shadow-sm">
-          <h2 className="mb-4 text-lg font-bold text-stone-800">Nuevo perrito</h2>
+          <h2 className="mb-4 text-lg font-bold text-stone-800">Nueva adopción</h2>
           <DogForm onDone={() => setShowNew(false)} />
         </div>
       )}
@@ -67,7 +67,7 @@ export default function AdminBoard({ dogs }: { dogs: Dog[] }) {
       {/* Lista */}
       {dogs.length === 0 ? (
         <p className="rounded-xl bg-pink-100 p-8 text-center text-stone-600">
-          Todavía no hay perritos cargados. Agregá el primero 🐶
+          Todavía no hay adopciones cargadas. Cargá la primera 🐾
         </p>
       ) : (
         <ul className="flex flex-col gap-3">

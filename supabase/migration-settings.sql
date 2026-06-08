@@ -13,6 +13,7 @@ create table if not exists public.settings (
   email       text,
   instagram   text,
   facebook    text,
+  alias       text,                                 -- alias para donaciones
   ayuda       jsonb not null default '[]'::jsonb,  -- [{ "titulo": "...", "texto": "..." }]
   updated_at  timestamptz not null default now(),
   constraint settings_single_row check (id = 1)

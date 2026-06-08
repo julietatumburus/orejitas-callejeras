@@ -39,6 +39,7 @@ export async function saveSettings(formData: FormData): Promise<ActionResult> {
       email: str("email"),
       instagram: str("instagram"),
       facebook: str("facebook"),
+      alias: str("alias"),
       ayuda,
       updated_at: new Date().toISOString(),
     })

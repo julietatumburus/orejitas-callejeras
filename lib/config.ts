@@ -20,6 +20,9 @@ export const ORG = {
   instagram: "https://www.instagram.com/orejitascallejeras_/",
   facebook: "",
 
+  // Alias para donaciones (transferencias). Vacío = no se muestra.
+  alias: "orejitascallejerasok",
+
   // Texto del bloque "Cómo ayudar" de la landing
   ayuda: [
     {

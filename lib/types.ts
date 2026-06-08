@@ -11,6 +11,7 @@ export interface Settings {
   email: string;
   instagram: string;
   facebook: string;
+  alias: string;
   ayuda: AyudaItem[];
 }
 

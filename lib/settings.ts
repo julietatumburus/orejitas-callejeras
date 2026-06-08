@@ -12,6 +12,7 @@ export function defaultSettings(): Settings {
     email: ORG.email,
     instagram: ORG.instagram,
     facebook: ORG.facebook,
+    alias: ORG.alias,
     ayuda: ORG.ayuda.map((a) => ({ titulo: a.titulo, texto: a.texto })),
   };
 }
@@ -40,6 +41,7 @@ export async function getSettings(): Promise<Settings> {
       email: data.email ?? d.email,
       instagram: data.instagram ?? d.instagram,
       facebook: data.facebook ?? d.facebook,
+      alias: data.alias ?? d.alias,
       ayuda,
     };
   } catch {

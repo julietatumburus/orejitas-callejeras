@@ -21,7 +21,7 @@ export default async function Navbar() {
             href="/adoptar"
             className="rounded-full bg-pink-500 px-4 py-2 text-white shadow-sm transition hover:bg-pink-600"
           >
-            Adoptar 🐾
+            Adoptá 🐾
           </Link>
         </div>
       </nav>

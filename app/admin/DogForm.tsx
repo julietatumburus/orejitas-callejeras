@@ -170,7 +170,7 @@ export default function DogForm({
           disabled={saving}
           className="rounded-full bg-pink-500 px-5 py-2 font-semibold text-white transition hover:bg-pink-600 disabled:opacity-60"
         >
-          {saving ? "Guardando…" : isEdit ? "Guardar cambios" : "Agregar perrito"}
+          {saving ? "Guardando…" : isEdit ? "Guardar cambios" : "Cargar adopción"}
         </button>
       </div>
     </form>

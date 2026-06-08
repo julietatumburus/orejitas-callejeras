@@ -94,6 +94,15 @@ export default function SettingsForm({ settings }: { settings: Settings }) {
         </div>
       </section>
 
+      {/* Donaciones */}
+      <section className="rounded-2xl border border-pink-100 bg-white p-6 shadow-sm">
+        <h2 className="mb-1 text-lg font-bold text-stone-800">Donaciones</h2>
+        <p className="mb-4 text-xs text-stone-400">
+          Alias para transferencias. Aparece en “Cómo ayudar” con un botón para copiar. Vacío = no se muestra.
+        </p>
+        <Field label="Alias" name="alias" defaultValue={settings.alias} placeholder="orejitascallejerasok" />
+      </section>
+
       {/* Tarjetas Cómo ayudar */}
       <section className="rounded-2xl border border-pink-100 bg-white p-6 shadow-sm">
         <div className="mb-4 flex items-center justify-between">

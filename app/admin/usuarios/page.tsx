@@ -13,6 +13,7 @@ export default async function UsuariosPage() {
   const { data } = await supabase
     .from("profiles")
     .select("*")
+    .neq("role", "superadmin") // el/los superadmin quedan "en las sombras"
     .order("created_at", { ascending: true });
 
   const users = (data ?? []) as Profile[];

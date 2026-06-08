@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingPaws from "@/components/FloatingPaws";
 import Reveal from "@/components/Reveal";
+import DonationBanner from "@/components/DonationBanner";
 import { whatsappGeneralLink } from "@/lib/config";
 import { getSettings } from "@/lib/settings";
 
@@ -42,7 +43,7 @@ export default async function Home() {
               href="/adoptar"
               className="rounded-full bg-pink-500 px-7 py-3.5 text-base font-bold text-white shadow-md shadow-pink-200 transition hover:scale-105 hover:bg-pink-600"
             >
-              Ver en adopción 🐾
+              Adoptá 🐾
             </Link>
             {settings.whatsapp && (
               <a
@@ -117,6 +118,12 @@ export default async function Home() {
               </Reveal>
             ))}
           </div>
+
+          {settings.alias && (
+            <Reveal>
+              <DonationBanner alias={settings.alias} />
+            </Reveal>
+          )}
         </div>
       </section>
 
@@ -161,7 +168,7 @@ export default async function Home() {
             href="/adoptar"
             className="rounded-full bg-pink-500 px-8 py-4 text-base font-bold text-white shadow-md shadow-pink-200 transition hover:scale-105 hover:bg-pink-600"
           >
-            Ver en adopción 🐾
+            Adoptá 🐾
           </Link>
         </div>
       </section>
