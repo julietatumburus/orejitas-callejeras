@@ -19,8 +19,8 @@ export default async function Home() {
       <Navbar />
 
       {/* ---------- HERO (oscuro, rosa vino + letras crema) ---------- */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-pink-950 via-pink-900 to-pink-800 text-[#f7ecdc]">
-        <FloatingPaws colorClass="text-pink-200/15" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#b23c75] via-[#e0518f] to-[#f56fa3] text-[#fdf3e8]">
+        <FloatingPaws colorClass="text-white/15" />
         <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center sm:py-32">
           <span className="enter inline-block text-7xl animate-bob">🐾</span>
           <h1
@@ -65,19 +65,6 @@ export default async function Home() {
           </svg>
         </div>
       </section>
-
-      {/* ---------- Rastro de patitas ---------- */}
-      <div className="flex justify-center gap-3 bg-[#fdf6ec] pb-2 text-2xl text-pink-300">
-        {Array.from({ length: 7 }).map((_, i) => (
-          <span
-            key={i}
-            className="animate-paw-step"
-            style={{ animationDelay: `${i * 0.18}s`, transform: i % 2 ? "translateY(8px)" : "none" }}
-          >
-            🐾
-          </span>
-        ))}
-      </div>
 
       {/* ---------- Quiénes somos ---------- */}
       <section id="nosotros" className="bg-[#fdf6ec]">
@@ -156,8 +143,8 @@ export default async function Home() {
       )}
 
       {/* ---------- CTA final (oscuro) ---------- */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-pink-900 to-pink-800 text-[#f7ecdc]">
-        <FloatingPaws colorClass="text-pink-200/15" />
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#e0518f] to-[#b23c75] text-[#fdf3e8]">
+        <FloatingPaws colorClass="text-white/15" />
         <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-5 px-4 py-20 text-center">
           <span className="text-5xl animate-wiggle">🐾</span>
           <h2 className="text-3xl font-bold sm:text-4xl">¿Listo para cambiar una vida?</h2>
