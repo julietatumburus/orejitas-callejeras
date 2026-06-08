@@ -19,7 +19,7 @@ export default async function Home() {
 
       {/* ---------- HERO (suave, rosa empolvado) ---------- */}
       <section className="relative overflow-hidden bg-gradient-to-b from-rose-100 via-pink-50 to-white">
-        <FloatingPaws colorClass="text-rose-300/50" />
+        <FloatingPaws colorClass="text-rose-200/70" />
         <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center sm:py-32">
           <span className="enter inline-block text-7xl animate-bob">🐾</span>
           <h1
@@ -150,7 +150,7 @@ export default async function Home() {
 
       {/* ---------- CTA final (suave) ---------- */}
       <section className="relative overflow-hidden bg-gradient-to-b from-pink-50 to-rose-100">
-        <FloatingPaws colorClass="text-rose-300/40" />
+        <FloatingPaws colorClass="text-rose-200/60" />
         <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-5 px-4 py-20 text-center">
           <span className="text-5xl animate-wiggle">🐾</span>
           <h2 className="text-3xl font-bold text-pink-700 sm:text-4xl">¿Listo para cambiar una vida?</h2>

@@ -1,17 +1,20 @@
 /** Patitas 🐾 que flotan hacia arriba de fondo (decorativo, animación CSS). */
+// Posicionadas hacia los costados para dejar el centro (texto) despejado.
 const PAWS = [
-  { left: "6%", size: "text-2xl", dur: "18s", delay: "0s" },
-  { left: "18%", size: "text-4xl", dur: "24s", delay: "5s" },
-  { left: "32%", size: "text-xl", dur: "16s", delay: "2s" },
-  { left: "47%", size: "text-3xl", dur: "22s", delay: "8s" },
-  { left: "61%", size: "text-2xl", dur: "20s", delay: "1s" },
-  { left: "74%", size: "text-4xl", dur: "26s", delay: "6s" },
-  { left: "86%", size: "text-xl", dur: "17s", delay: "3s" },
-  { left: "93%", size: "text-3xl", dur: "23s", delay: "9s" },
+  // costado izquierdo
+  { left: "3%", size: "text-2xl", dur: "18s", delay: "0s" },
+  { left: "9%", size: "text-4xl", dur: "24s", delay: "5s" },
+  { left: "16%", size: "text-xl", dur: "16s", delay: "2s" },
+  { left: "22%", size: "text-3xl", dur: "22s", delay: "8s" },
+  // costado derecho
+  { left: "78%", size: "text-3xl", dur: "20s", delay: "1s" },
+  { left: "85%", size: "text-xl", dur: "26s", delay: "6s" },
+  { left: "91%", size: "text-4xl", dur: "17s", delay: "3s" },
+  { left: "97%", size: "text-2xl", dur: "23s", delay: "9s" },
 ];
 
 export default function FloatingPaws({
-  colorClass = "text-rose-300/50",
+  colorClass = "text-rose-200/70",
 }: {
   colorClass?: string;
 }) {
