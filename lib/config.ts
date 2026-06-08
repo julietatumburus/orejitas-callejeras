@@ -7,9 +7,9 @@
 export const ORG = {
   // Nombre que aparece en la web y en el título de la pestaña
   name: "Orejitas Callejeras",
-  tagline: "Cada perrito merece una segunda oportunidad",
+  tagline: "Cada rescatado merece una segunda oportunidad",
   description:
-    "Somos una organización sin fines de lucro dedicada al rescate, cuidado y adopción responsable de perritos en situación de calle.",
+    "Somos una organización sin fines de lucro dedicada al rescate, cuidado y adopción responsable de perritos y gatitos en situación de calle.",
 
   // Número de WhatsApp en formato internacional SIN '+', espacios ni guiones.
   // Ejemplo Argentina: 5491122334455 (54 país, 9 celular, 11 área, número)
@@ -24,7 +24,7 @@ export const ORG = {
   ayuda: [
     {
       titulo: "Adoptá",
-      texto: "Dale un hogar a un perrito rescatado. Mirá los que están en adopción.",
+      texto: "Dale un hogar a un rescatado. Mirá los perritos y gatitos en adopción.",
     },
     {
       titulo: "Apadriná",
@@ -37,9 +37,9 @@ export const ORG = {
   ],
 } as const;
 
-/** Arma el link de WhatsApp con un mensaje pre-cargado sobre un perrito. */
-export function whatsappLink(dogName: string): string {
-  const msg = `¡Hola ${ORG.name}! 🐶 Quiero saber más sobre *${dogName}* que vi en la web para adoptar.`;
+/** Arma el link de WhatsApp con un mensaje pre-cargado sobre un animalito. */
+export function whatsappLink(name: string, emoji = "🐾"): string {
+  const msg = `¡Hola ${ORG.name}! ${emoji} Quiero saber más sobre *${name}* que vi en la web para adoptar.`;
   return `https://wa.me/${ORG.whatsapp}?text=${encodeURIComponent(msg)}`;
 }
 

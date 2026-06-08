@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import type { Dog } from "@/lib/types";
-import { SEXO_LABEL, TAMANO_LABEL, ESTADO_LABEL } from "@/lib/types";
+import { SEXO_LABEL, TAMANO_LABEL, ESTADO_LABEL, ESPECIE_LABEL, ESPECIE_EMOJI } from "@/lib/types";
 import DogForm from "./DogForm";
 import { deleteDog } from "./actions";
 
@@ -80,7 +80,9 @@ export default function AdminBoard({ dogs }: { dogs: Dog[] }) {
                 {dog.photo_url ? (
                   <Image src={dog.photo_url} alt={dog.name} fill sizes="64px" className="object-cover" />
                 ) : (
-                  <div className="flex h-full items-center justify-center text-2xl">🐶</div>
+                  <div className="flex h-full items-center justify-center text-2xl">
+                    {ESPECIE_EMOJI[dog.species]}
+                  </div>
                 )}
               </div>
 
@@ -92,7 +94,7 @@ export default function AdminBoard({ dogs }: { dogs: Dog[] }) {
                   </span>
                 </div>
                 <p className="truncate text-sm text-stone-500">
-                  {SEXO_LABEL[dog.sex]} · {TAMANO_LABEL[dog.size]}
+                  {ESPECIE_LABEL[dog.species]} · {SEXO_LABEL[dog.sex]} · {TAMANO_LABEL[dog.size]}
                   {dog.age ? ` · ${dog.age}` : ""}
                 </p>
               </div>

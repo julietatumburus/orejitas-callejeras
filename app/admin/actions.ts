@@ -3,8 +3,8 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { SEXOS, TAMANOS, ESTADOS } from "@/lib/types";
-import type { Sexo, Tamano, Estado } from "@/lib/types";
+import { ESPECIES, SEXOS, TAMANOS, ESTADOS } from "@/lib/types";
+import type { Especie, Sexo, Tamano, Estado } from "@/lib/types";
 
 const BUCKET = "dog-photos";
 
@@ -12,6 +12,7 @@ export type ActionResult = { ok: boolean; error?: string };
 
 function parseFields(formData: FormData) {
   const name = String(formData.get("name") ?? "").trim();
+  const species = String(formData.get("species") ?? "");
   const age = String(formData.get("age") ?? "").trim();
   const sex = String(formData.get("sex") ?? "");
   const size = String(formData.get("size") ?? "");
@@ -19,6 +20,7 @@ function parseFields(formData: FormData) {
   const description = String(formData.get("description") ?? "").trim();
 
   if (!name) return { error: "El nombre es obligatorio." as const };
+  if (!ESPECIES.includes(species as Especie)) return { error: "Tipo inválido." as const };
   if (!SEXOS.includes(sex as Sexo)) return { error: "Sexo inválido." as const };
   if (!TAMANOS.includes(size as Tamano)) return { error: "Tamaño inválido." as const };
   if (!ESTADOS.includes(status as Estado)) return { error: "Estado inválido." as const };
@@ -26,6 +28,7 @@ function parseFields(formData: FormData) {
   return {
     fields: {
       name,
+      species: species as Especie,
       age: age || null,
       sex: sex as Sexo,
       size: size as Tamano,

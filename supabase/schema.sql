@@ -7,6 +7,7 @@
 create table if not exists public.dogs (
   id          uuid primary key default gen_random_uuid(),
   name        text not null,
+  species     text not null default 'perro' check (species in ('perro','gato')),
   age         text,                       -- ej: "Cachorro", "2 años"
   sex         text not null check (sex in ('macho','hembra')),
   size        text not null check (size in ('pequeño','mediano','grande')),

@@ -1,3 +1,16 @@
+export const ESPECIES = ["perro", "gato"] as const;
+export type Especie = (typeof ESPECIES)[number];
+
+export const ESPECIE_LABEL: Record<Especie, string> = {
+  perro: "Perro",
+  gato: "Gato",
+};
+
+export const ESPECIE_EMOJI: Record<Especie, string> = {
+  perro: "🐶",
+  gato: "🐱",
+};
+
 export const SEXOS = ["macho", "hembra"] as const;
 export type Sexo = (typeof SEXOS)[number];
 
@@ -27,6 +40,7 @@ export const SEXO_LABEL: Record<Sexo, string> = {
 export interface Dog {
   id: string;
   name: string;
+  species: Especie;
   age: string | null;
   sex: Sexo;
   size: Tamano;

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { Dog } from "@/lib/types";
-import { SEXO_LABEL, TAMANO_LABEL, ESTADO_LABEL } from "@/lib/types";
+import { SEXO_LABEL, TAMANO_LABEL, ESTADO_LABEL, ESPECIE_LABEL, ESPECIE_EMOJI } from "@/lib/types";
 import WhatsAppButton from "./WhatsAppButton";
 
 const estadoStyle: Record<string, string> = {
@@ -22,7 +22,9 @@ export default function DogCard({ dog }: { dog: Dog }) {
             className="object-cover"
           />
         ) : (
-          <div className="flex h-full items-center justify-center text-5xl">🐶</div>
+          <div className="flex h-full items-center justify-center text-5xl">
+            {ESPECIE_EMOJI[dog.species]}
+          </div>
         )}
         <span
           className={`absolute left-3 top-3 rounded-full px-2.5 py-1 text-xs font-semibold ${
@@ -37,6 +39,9 @@ export default function DogCard({ dog }: { dog: Dog }) {
         <div>
           <h3 className="text-lg font-bold text-pink-700">{dog.name}</h3>
           <div className="mt-1 flex flex-wrap gap-1.5 text-xs">
+            <span className="rounded-full bg-pink-50 px-2 py-0.5 text-pink-700 ring-1 ring-pink-200">
+              {ESPECIE_EMOJI[dog.species]} {ESPECIE_LABEL[dog.species]}
+            </span>
             <span className="rounded-full bg-pink-50 px-2 py-0.5 text-pink-700 ring-1 ring-pink-200">
               {SEXO_LABEL[dog.sex]}
             </span>
@@ -61,7 +66,7 @@ export default function DogCard({ dog }: { dog: Dog }) {
               ¡Ya encontró su hogar! 🏡
             </p>
           ) : (
-            <WhatsAppButton dogName={dog.name} />
+            <WhatsAppButton dogName={dog.name} emoji={ESPECIE_EMOJI[dog.species]} />
           )}
         </div>
       </div>

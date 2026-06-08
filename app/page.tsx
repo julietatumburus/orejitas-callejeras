@@ -37,7 +37,7 @@ export default function Home() {
               href="/adoptar"
               className="rounded-full bg-pink-500 px-7 py-3.5 text-base font-bold text-white shadow-md shadow-pink-200 transition hover:scale-105 hover:bg-pink-600"
             >
-              Ver perritos en adopción 🐶
+              Ver en adopción 🐾
             </Link>
             <a
               href={whatsappGeneralLink()}
@@ -82,9 +82,9 @@ export default function Home() {
           </Reveal>
           <Reveal delay={150}>
             <p className="mx-auto mt-5 max-w-3xl text-lg leading-relaxed text-stone-600">
-              {ORG.description} Trabajamos día a día para que cada perrito rescatado de la calle
+              {ORG.description} Trabajamos día a día para que cada animalito rescatado de la calle
               reciba atención veterinaria, cariño y, sobre todo, una familia que lo espere. La
-              adopción es responsable y gratuita: lo importante es el compromiso. 🐶
+              adopción es responsable y gratuita: lo importante es el compromiso. 🐾
             </p>
           </Reveal>
         </div>
@@ -148,13 +148,13 @@ export default function Home() {
           <span className="text-5xl animate-wiggle">🐾</span>
           <h2 className="text-3xl font-bold text-pink-700 sm:text-4xl">¿Listo para cambiar una vida?</h2>
           <p className="max-w-xl text-lg text-stone-600">
-            Conocé a los perritos que están esperando un hogar.
+            Conocé a los perritos y gatitos que están esperando un hogar.
           </p>
           <Link
             href="/adoptar"
             className="rounded-full bg-pink-500 px-8 py-4 text-base font-bold text-white shadow-md shadow-pink-200 transition hover:scale-105 hover:bg-pink-600"
           >
-            Ver perritos en adopción 🐶
+            Ver en adopción 🐾
           </Link>
         </div>
       </section>

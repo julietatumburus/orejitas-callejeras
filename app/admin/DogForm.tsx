@@ -4,7 +4,16 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import type { Dog } from "@/lib/types";
-import { SEXOS, TAMANOS, ESTADOS, SEXO_LABEL, TAMANO_LABEL, ESTADO_LABEL } from "@/lib/types";
+import {
+  ESPECIES,
+  SEXOS,
+  TAMANOS,
+  ESTADOS,
+  ESPECIE_LABEL,
+  SEXO_LABEL,
+  TAMANO_LABEL,
+  ESTADO_LABEL,
+} from "@/lib/types";
 import { createDog, updateDog } from "./actions";
 
 export default function DogForm({
@@ -50,6 +59,17 @@ export default function DogForm({
       {isEdit && <input type="hidden" name="old_photo_path" value={dog!.photo_path ?? ""} />}
 
       <div className="grid gap-4 sm:grid-cols-2">
+        <label className="flex flex-col gap-1">
+          <span className="text-sm font-medium text-stone-700">Tipo *</span>
+          <select name="species" defaultValue={dog?.species ?? "perro"} className={inputClass}>
+            {ESPECIES.map((e) => (
+              <option key={e} value={e}>
+                {ESPECIE_LABEL[e]}
+              </option>
+            ))}
+          </select>
+        </label>
+
         <label className="flex flex-col gap-1">
           <span className="text-sm font-medium text-stone-700">Nombre *</span>
           <input name="name" required defaultValue={dog?.name} className={inputClass} />

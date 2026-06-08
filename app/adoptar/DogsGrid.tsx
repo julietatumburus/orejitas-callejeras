@@ -2,27 +2,38 @@
 
 import { useMemo, useState } from "react";
 import DogCard from "@/components/DogCard";
-import type { Dog, Sexo, Tamano } from "@/lib/types";
-import { SEXOS, TAMANOS, SEXO_LABEL, TAMANO_LABEL } from "@/lib/types";
+import type { Dog, Especie, Sexo, Tamano } from "@/lib/types";
+import { ESPECIES, SEXOS, TAMANOS, ESPECIE_LABEL, SEXO_LABEL, TAMANO_LABEL } from "@/lib/types";
 
 export default function DogsGrid({ dogs }: { dogs: Dog[] }) {
+  const [especie, setEspecie] = useState<Especie | "todos">("todos");
   const [sexo, setSexo] = useState<Sexo | "todos">("todos");
   const [tamano, setTamano] = useState<Tamano | "todos">("todos");
   const [mostrarAdoptados, setMostrarAdoptados] = useState(false);
 
   const filtrados = useMemo(() => {
     return dogs.filter((d) => {
+      if (especie !== "todos" && d.species !== especie) return false;
       if (sexo !== "todos" && d.sex !== sexo) return false;
       if (tamano !== "todos" && d.size !== tamano) return false;
       if (!mostrarAdoptados && d.status === "adoptado") return false;
       return true;
     });
-  }, [dogs, sexo, tamano, mostrarAdoptados]);
+  }, [dogs, especie, sexo, tamano, mostrarAdoptados]);
 
   return (
     <div>
       {/* Filtros */}
-      <div className="mb-8 flex flex-col gap-4 rounded-2xl border border-pink-200 bg-white p-4 sm:flex-row sm:items-end sm:gap-6">
+      <div className="mb-8 flex flex-col gap-4 rounded-2xl border border-pink-200 bg-white p-4 sm:flex-row sm:flex-wrap sm:items-end sm:gap-6">
+        <Filtro
+          label="Tipo"
+          value={especie}
+          onChange={(v) => setEspecie(v as Especie | "todos")}
+          options={[
+            { value: "todos", label: "Todos" },
+            ...ESPECIES.map((e) => ({ value: e, label: ESPECIE_LABEL[e] })),
+          ]}
+        />
         <Filtro
           label="Sexo"
           value={sexo}
@@ -55,7 +66,7 @@ export default function DogsGrid({ dogs }: { dogs: Dog[] }) {
       {/* Resultados */}
       {filtrados.length === 0 ? (
         <p className="rounded-xl bg-pink-100 p-8 text-center text-stone-600">
-          No hay perritos que coincidan con el filtro. Probá cambiar las opciones 🐶
+          No hay rescatados que coincidan con el filtro. Probá cambiar las opciones 🐾
         </p>
       ) : (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
