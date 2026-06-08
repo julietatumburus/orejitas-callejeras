@@ -14,7 +14,7 @@ const PAWS = [
 ];
 
 export default function FloatingPaws({
-  colorClass = "text-rose-200/70",
+  colorClass = "text-pink-200/70",
 }: {
   colorClass?: string;
 }) {

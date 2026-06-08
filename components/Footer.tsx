@@ -10,9 +10,9 @@ export default async function Footer() {
   const settings = await getSettings();
 
   return (
-    <footer className="mt-auto border-t border-rose-200 bg-gradient-to-b from-[#fdf6ec] to-[#f1ddcf]/70">
+    <footer className="mt-auto border-t border-pink-200 bg-gradient-to-b from-[#fdf6ec] to-[#f1ddcf]/70">
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 px-4 py-12 text-center">
-        <p className="flex items-center gap-2 text-lg font-bold text-rose-800">
+        <p className="flex items-center gap-2 text-lg font-bold text-pink-800">
           <span className="text-2xl">🐾</span> {settings.name}
         </p>
 
@@ -65,7 +65,7 @@ export default async function Footer() {
           {/* Email */}
           {settings.email && (
             <a href={`mailto:${settings.email}`} aria-label="Email" className={item}>
-              <span className={`${circle} bg-gradient-to-tr from-pink-500 to-rose-400`}>
+              <span className={`${circle} bg-gradient-to-tr from-pink-500 to-pink-400`}>
                 <svg
                   viewBox="0 0 24 24"
                   className="h-6 w-6 fill-none stroke-white"
@@ -101,7 +101,7 @@ export default async function Footer() {
           )}
         </div>
 
-        <div className="mt-2 h-px w-24 bg-rose-200" />
+        <div className="mt-2 h-px w-24 bg-pink-200" />
         <p className="text-xs text-stone-400">
           © {new Date().getFullYear()} {settings.name} · Organización sin fines de lucro 🐾
         </p>
