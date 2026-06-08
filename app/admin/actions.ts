@@ -92,7 +92,7 @@ export async function createDog(formData: FormData): Promise<ActionResult> {
 
   if (error) {
     await removePhoto(supabase, photo?.path);
-    return { ok: false, error: "No se pudo guardar el perrito." };
+    return { ok: false, error: `No se pudo guardar el perrito: ${error.message}` };
   }
 
   revalidatePath("/admin");
@@ -129,7 +129,7 @@ export async function updateDog(id: string, formData: FormData): Promise<ActionR
 
   const { error } = await supabase.from("dogs").update(update).eq("id", id);
 
-  if (error) return { ok: false, error: "No se pudo actualizar el perrito." };
+  if (error) return { ok: false, error: `No se pudo actualizar el perrito: ${error.message}` };
 
   // Borramos la foto vieja solo si subieron una nueva
   if (file && file.size > 0 && oldPath) await removePhoto(supabase, oldPath);
@@ -147,7 +147,7 @@ export async function deleteDog(id: string, photoPath: string | null): Promise<A
   if (!user) return { ok: false, error: "No autorizado." };
 
   const { error } = await supabase.from("dogs").delete().eq("id", id);
-  if (error) return { ok: false, error: "No se pudo borrar el perrito." };
+  if (error) return { ok: false, error: `No se pudo borrar el perrito: ${error.message}` };
 
   await removePhoto(supabase, photoPath);
 
