@@ -2,15 +2,17 @@ import { whatsappLink } from "@/lib/config";
 
 /** Botón que abre WhatsApp con un mensaje pre-cargado sobre el animalito. */
 export default function WhatsAppButton({
+  whatsapp,
   dogName,
   emoji = "🐾",
 }: {
+  whatsapp: string;
   dogName: string;
   emoji?: string;
 }) {
   return (
     <a
-      href={whatsappLink(dogName, emoji)}
+      href={whatsappLink(whatsapp, dogName, emoji)}
       target="_blank"
       rel="noopener noreferrer"
       className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700"

@@ -1,13 +1,14 @@
 import Link from "next/link";
-import { ORG } from "@/lib/config";
+import { getSettings } from "@/lib/settings";
 
-export default function Navbar() {
+export default async function Navbar() {
+  const settings = await getSettings();
   return (
     <header className="sticky top-0 z-40 border-b border-pink-200 bg-pink-50/90 backdrop-blur">
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-2 text-lg font-bold text-pink-700">
           <span className="text-2xl">🐾</span>
-          {ORG.name}
+          {settings.name}
         </Link>
         <div className="flex items-center gap-4 text-sm font-medium">
           <Link href="/#nosotros" className="hidden text-stone-600 hover:text-pink-600 sm:inline">

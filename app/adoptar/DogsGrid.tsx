@@ -5,7 +5,7 @@ import DogCard from "@/components/DogCard";
 import type { Dog, Especie, Sexo, Tamano } from "@/lib/types";
 import { ESPECIES, SEXOS, TAMANOS, ESPECIE_LABEL, SEXO_LABEL, TAMANO_LABEL } from "@/lib/types";
 
-export default function DogsGrid({ dogs }: { dogs: Dog[] }) {
+export default function DogsGrid({ dogs, whatsapp }: { dogs: Dog[]; whatsapp: string }) {
   const [especie, setEspecie] = useState<Especie | "todos">("todos");
   const [sexo, setSexo] = useState<Sexo | "todos">("todos");
   const [tamano, setTamano] = useState<Tamano | "todos">("todos");
@@ -71,7 +71,7 @@ export default function DogsGrid({ dogs }: { dogs: Dog[] }) {
       ) : (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtrados.map((dog) => (
-            <DogCard key={dog.id} dog={dog} />
+            <DogCard key={dog.id} dog={dog} whatsapp={whatsapp} />
           ))}
         </div>
       )}

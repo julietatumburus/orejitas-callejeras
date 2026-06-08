@@ -3,11 +3,16 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingPaws from "@/components/FloatingPaws";
 import Reveal from "@/components/Reveal";
-import { ORG, whatsappGeneralLink } from "@/lib/config";
+import { whatsappGeneralLink } from "@/lib/config";
+import { getSettings } from "@/lib/settings";
 
-const AYUDA_ICONS = ["🏠", "💖", "📣"];
+const AYUDA_ICONS = ["🏠", "🛏️", "💖", "📣"];
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const settings = await getSettings();
+
   return (
     <>
       <Navbar />
@@ -21,13 +26,13 @@ export default function Home() {
             className="enter text-4xl font-extrabold tracking-tight text-pink-700 sm:text-6xl"
             style={{ animationDelay: "0.1s" }}
           >
-            {ORG.name}
+            {settings.name}
           </h1>
           <p className="enter max-w-2xl text-lg text-stone-600 sm:text-xl" style={{ animationDelay: "0.2s" }}>
-            {ORG.tagline}
+            {settings.tagline}
           </p>
           <p className="enter max-w-2xl text-stone-500" style={{ animationDelay: "0.3s" }}>
-            {ORG.description}
+            {settings.description}
           </p>
           <div
             className="enter mt-2 flex flex-wrap items-center justify-center gap-3"
@@ -39,14 +44,16 @@ export default function Home() {
             >
               Ver en adopción 🐾
             </Link>
-            <a
-              href={whatsappGeneralLink()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-pink-200 bg-white/70 px-7 py-3.5 text-base font-semibold text-pink-600 backdrop-blur-sm transition hover:bg-white"
-            >
-              Contactarnos
-            </a>
+            {settings.whatsapp && (
+              <a
+                href={whatsappGeneralLink(settings.whatsapp)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-pink-200 bg-white/70 px-7 py-3.5 text-base font-semibold text-pink-600 backdrop-blur-sm transition hover:bg-white"
+              >
+                Contactarnos
+              </a>
+            )}
           </div>
         </div>
 
@@ -82,8 +89,8 @@ export default function Home() {
           </Reveal>
           <Reveal delay={150}>
             <p className="mx-auto mt-5 max-w-3xl text-lg leading-relaxed text-stone-600">
-              {ORG.description} Trabajamos día a día para que cada animalito rescatado de la calle
-              reciba atención veterinaria, cariño y, sobre todo, una familia que lo espere. La
+              {settings.description} Trabajamos día a día para que cada animalito rescatado de la
+              calle reciba atención veterinaria, cariño y, sobre todo, una familia que lo espere. La
               adopción es responsable y gratuita: lo importante es el compromiso. 🐾
             </p>
           </Reveal>
@@ -97,9 +104,9 @@ export default function Home() {
             <h2 className="text-center text-3xl font-bold text-pink-700">Cómo ayudar</h2>
             <p className="mt-3 text-center text-stone-500">Hay muchas formas de sumar una patita 🐾</p>
           </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-3">
-            {ORG.ayuda.map((item, i) => (
-              <Reveal key={item.titulo} delay={i * 120}>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {settings.ayuda.map((item, i) => (
+              <Reveal key={`${item.titulo}-${i}`} delay={i * 120}>
                 <div className="group h-full rounded-3xl border border-pink-100 bg-white p-8 text-center shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-pink-100">
                   <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-pink-50 text-3xl ring-1 ring-pink-100 transition group-hover:scale-110">
                     {AYUDA_ICONS[i] ?? "🐾"}
@@ -114,7 +121,7 @@ export default function Home() {
       </section>
 
       {/* ---------- Instagram (suave) ---------- */}
-      {ORG.instagram && (
+      {settings.instagram && (
         <section className="bg-white">
           <div className="mx-auto max-w-5xl px-4 py-16">
             <Reveal>
@@ -127,12 +134,12 @@ export default function Home() {
                     Conocé a los rescatados, sus historias y enterate de cómo colaborar.
                   </p>
                   <a
-                    href={ORG.instagram}
+                    href={settings.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-6 inline-flex items-center gap-2 rounded-full bg-pink-500 px-6 py-3 font-bold text-white shadow-md shadow-pink-200 transition hover:scale-105 hover:bg-pink-600"
                   >
-                    @orejitascallejeras_
+                    Ver Instagram
                   </a>
                 </div>
               </div>

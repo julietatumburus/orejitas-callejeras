@@ -1,3 +1,36 @@
+export interface AyudaItem {
+  titulo: string;
+  texto: string;
+}
+
+export interface Settings {
+  name: string;
+  tagline: string;
+  description: string;
+  whatsapp: string;
+  email: string;
+  instagram: string;
+  facebook: string;
+  ayuda: AyudaItem[];
+}
+
+export const ROLES = ["superadmin", "admin", "usuario"] as const;
+export type Role = (typeof ROLES)[number];
+
+export const ROLE_LABEL: Record<Role, string> = {
+  superadmin: "Superadmin",
+  admin: "Admin",
+  usuario: "Usuario",
+};
+
+export interface Profile {
+  id: string;
+  email: string | null;
+  role: Role;
+  enabled: boolean;
+  created_at: string;
+}
+
 export const ESPECIES = ["perro", "gato"] as const;
 export type Especie = (typeof ESPECIES)[number];
 

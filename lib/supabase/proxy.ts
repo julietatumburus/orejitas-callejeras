@@ -35,17 +35,18 @@ export async function updateSession(request: NextRequest) {
 
   const path = request.nextUrl.pathname;
   const isAdmin = path.startsWith("/admin");
-  const isLogin = path === "/admin/login";
+  // Páginas del panel accesibles sin estar logueado/habilitado
+  const isPublicAuth = path === "/admin/login" || path === "/admin/signup";
 
   // Sin sesión e intentando entrar al panel -> al login
-  if (isAdmin && !isLogin && !user) {
+  if (isAdmin && !isPublicAuth && !user) {
     const url = request.nextUrl.clone();
     url.pathname = "/admin/login";
     return NextResponse.redirect(url);
   }
 
-  // Ya logueada y entrando al login -> al panel
-  if (isLogin && user) {
+  // Ya logueada y entrando al login/registro -> al panel
+  if (isPublicAuth && user) {
     const url = request.nextUrl.clone();
     url.pathname = "/admin";
     return NextResponse.redirect(url);

@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import DogsGrid from "./DogsGrid";
 import { createClient } from "@/lib/supabase/server";
+import { getSettings } from "@/lib/settings";
 import type { Dog } from "@/lib/types";
 
 // Siempre datos frescos (poco tráfico, no hace falta cachear).
@@ -9,10 +10,10 @@ export const dynamic = "force-dynamic";
 
 export default async function AdoptarPage() {
   const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("dogs")
-    .select("*")
-    .order("created_at", { ascending: false });
+  const [{ data, error }, settings] = await Promise.all([
+    supabase.from("dogs").select("*").order("created_at", { ascending: false }),
+    getSettings(),
+  ]);
 
   const dogs = (data ?? []) as Dog[];
 
@@ -33,7 +34,7 @@ export default async function AdoptarPage() {
             No pudimos cargar los perritos. Intentá de nuevo en un rato.
           </p>
         ) : (
-          <DogsGrid dogs={dogs} />
+          <DogsGrid dogs={dogs} whatsapp={settings.whatsapp} />
         )}
       </main>
       <Footer />

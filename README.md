@@ -21,8 +21,12 @@ Costo: **$0** mientras el tráfico sea bajo (planes gratuitos de Vercel y Supaba
 1. Entrá a [supabase.com](https://supabase.com) → creá una cuenta gratis → **New project**.
 2. Elegí un nombre y una contraseña para la base (anotala). Esperá 1-2 min a que se cree.
 3. En el menú lateral, **SQL Editor** → **New query**.
-4. Pegá TODO el contenido de [`supabase/schema.sql`](supabase/schema.sql) y tocá **Run**.
-   Esto crea la tabla de perritos, los permisos y el espacio para las fotos.
+4. Corré estos scripts **en orden** (cada uno: pegar todo → **Run**):
+   1. [`supabase/schema.sql`](supabase/schema.sql) — tabla de publicaciones, permisos y fotos.
+   2. [`supabase/migration-roles.sql`](supabase/migration-roles.sql) — roles, registro y aprobación de usuarios. **Cambiá el email del final por el tuyo** para quedar como superadmin.
+   3. [`supabase/migration-settings.sql`](supabase/migration-settings.sql) — configuración editable (textos y contacto).
+
+   > Si ya tenías la base creada de antes, corré además [`supabase/migration-especie.sql`](supabase/migration-especie.sql) (agrega perro/gato).
 
 ### 2) Conseguir las claves
 
@@ -37,14 +41,29 @@ Copiá el archivo de ejemplo y completalo:
 cp .env.local.example .env.local
 ```
 
-### 3) Crear el usuario admin (las que van a cargar perritos)
+### 3) Roles y usuarios
 
-En Supabase → **Authentication** → **Users** → **Add user** → **Create new user**.
-Poné el email y una contraseña. Marcá **"Auto Confirm User"** para que pueda
-entrar enseguida. Repetí por cada persona que vaya a administrar.
+El sistema tiene 4 niveles:
 
-> Para que **solo** estas personas puedan registrarse, en
-> **Authentication → Providers → Email**, desactivá **"Allow new users to sign up"**.
+| Rol | Puede |
+|-----|-------|
+| **Superadmin** | Todo: gestionar usuarios y roles, editar la info de la org y las publicaciones |
+| **Admin** | Habilitar usuarios, editar la info de la org y las publicaciones |
+| **Usuario** | Solo cargar/editar/borrar publicaciones de adopción |
+| **Usuario final** | No se loguea, solo ve la web pública |
+
+Cómo funciona:
+1. Las personas se registran solas en **`/admin/signup`** → quedan **pendientes**.
+2. Vos (o un admin) las habilitás y les asignás el rol en **`/admin/usuarios`**.
+3. Vos quedaste como **superadmin** al correr `migration-roles.sql` (con tu email).
+
+> En Supabase → **Authentication → Providers → Email** podés desactivar la
+> confirmación por mail para que el alta sea inmediata (queda igual pendiente de aprobación).
+
+### 3.b) Editar la info de la organización
+Desde el panel, en **`/admin/configuracion`** (solo admin/superadmin) podés cambiar
+el nombre, eslogan, descripción, datos de contacto (WhatsApp, email, redes) y las
+tarjetas de "Cómo ayudar". Todo eso se refleja en la web pública.
 
 ### 4) Cargar los datos de la organización
 

@@ -9,7 +9,7 @@ const estadoStyle: Record<string, string> = {
   adoptado: "bg-stone-200 text-stone-600",
 };
 
-export default function DogCard({ dog }: { dog: Dog }) {
+export default function DogCard({ dog, whatsapp }: { dog: Dog; whatsapp: string }) {
   return (
     <article className="flex flex-col overflow-hidden rounded-2xl border border-pink-200 bg-white shadow-sm transition hover:shadow-md">
       <div className="relative aspect-square w-full bg-pink-100">
@@ -66,7 +66,7 @@ export default function DogCard({ dog }: { dog: Dog }) {
               ¡Ya encontró su hogar! 🏡
             </p>
           ) : (
-            <WhatsAppButton dogName={dog.name} emoji={ESPECIE_EMOJI[dog.species]} />
+            <WhatsAppButton whatsapp={whatsapp} dogName={dog.name} emoji={ESPECIE_EMOJI[dog.species]} />
           )}
         </div>
       </div>

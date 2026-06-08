@@ -24,7 +24,11 @@ export const ORG = {
   ayuda: [
     {
       titulo: "Adoptá",
-      texto: "Dale un hogar a un rescatado. Mirá los perritos y gatitos en adopción.",
+      texto: "Dale un hogar a un rescatado y cambiá su vida para siempre.",
+    },
+    {
+      titulo: "Transitá",
+      texto: "Dale un hogar temporal a un perrito o gatito por el tiempo que puedas, hasta que encuentre su familia definitiva.",
     },
     {
       titulo: "Apadriná",
@@ -38,13 +42,13 @@ export const ORG = {
 } as const;
 
 /** Arma el link de WhatsApp con un mensaje pre-cargado sobre un animalito. */
-export function whatsappLink(name: string, emoji = "🐾"): string {
+export function whatsappLink(whatsapp: string, name: string, emoji = "🐾"): string {
   const msg = `¡Hola ${ORG.name}! ${emoji} Quiero saber más sobre *${name}* que vi en la web para adoptar.`;
-  return `https://wa.me/${ORG.whatsapp}?text=${encodeURIComponent(msg)}`;
+  return `https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`;
 }
 
 /** Link de WhatsApp genérico (contacto general). */
-export function whatsappGeneralLink(): string {
+export function whatsappGeneralLink(whatsapp: string): string {
   const msg = `¡Hola ${ORG.name}! Quiero hacer una consulta.`;
-  return `https://wa.me/${ORG.whatsapp}?text=${encodeURIComponent(msg)}`;
+  return `https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`;
 }
