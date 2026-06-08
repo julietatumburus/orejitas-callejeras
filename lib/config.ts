@@ -17,7 +17,7 @@ export const ORG = {
 
   // Email y redes (opcionales: dejá "" para ocultarlos)
   email: "contacto@orejitascallejeras.org",
-  instagram: "", // ej: "https://instagram.com/orejitascallejeras"
+  instagram: "https://www.instagram.com/orejitascallejeras_/",
   facebook: "",
 
   // Texto del bloque "Cómo ayudar" de la landing
