@@ -11,6 +11,7 @@ create table if not exists public.dogs (
   age         text,                       -- ej: "Cachorro", "2 años"
   sex         text not null check (sex in ('macho','hembra')),
   size        text not null check (size in ('pequeño','mediano','grande')),
+  neutered    boolean not null default false,   -- ¿está castrado/a?
   description text,
   status      text not null default 'disponible'
               check (status in ('disponible','en_proceso','adoptado')),

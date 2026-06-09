@@ -17,6 +17,7 @@ function parseFields(formData: FormData) {
   const sex = String(formData.get("sex") ?? "");
   const size = String(formData.get("size") ?? "");
   const status = String(formData.get("status") ?? "disponible");
+  const neutered = formData.has("neutered");
   const description = String(formData.get("description") ?? "").trim();
 
   if (!name) return { error: "El nombre es obligatorio." as const };
@@ -32,6 +33,7 @@ function parseFields(formData: FormData) {
       age: age || null,
       sex: sex as Sexo,
       size: size as Tamano,
+      neutered,
       status: status as Estado,
       description: description || null,
     },

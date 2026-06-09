@@ -78,6 +78,7 @@ export interface Dog {
   age: string | null;
   sex: Sexo;
   size: Tamano;
+  neutered: boolean;
   description: string | null;
   status: Estado;
   photo_url: string | null;

@@ -131,6 +131,16 @@ export default function DogForm({
         </label>
       </div>
 
+      <label className="flex items-center gap-2 text-sm font-medium text-stone-700">
+        <input
+          type="checkbox"
+          name="neutered"
+          defaultChecked={dog?.neutered ?? false}
+          className="h-4 w-4 rounded border-stone-300 text-pink-500 focus:ring-pink-400"
+        />
+        Está castrado/a
+      </label>
+
       <label className="flex flex-col gap-1">
         <span className="text-sm font-medium text-stone-700">Descripción / historia</span>
         <textarea

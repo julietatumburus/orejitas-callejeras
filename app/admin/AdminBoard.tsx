@@ -96,6 +96,7 @@ export default function AdminBoard({ dogs }: { dogs: Dog[] }) {
                 <p className="truncate text-sm text-stone-500">
                   {ESPECIE_LABEL[dog.species]} · {SEXO_LABEL[dog.sex]} · {TAMANO_LABEL[dog.size]}
                   {dog.age ? ` · ${dog.age}` : ""}
+                  {dog.neutered ? " · Castrado/a ✓" : ""}
                 </p>
               </div>
 

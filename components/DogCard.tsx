@@ -53,6 +53,11 @@ export default function DogCard({ dog, whatsapp }: { dog: Dog; whatsapp: string 
                 {dog.age}
               </span>
             )}
+            {dog.neutered && (
+              <span className="rounded-full bg-green-50 px-2 py-0.5 text-green-700 ring-1 ring-green-200">
+                ✓ {dog.sex === "hembra" ? "Castrada" : "Castrado"}
+              </span>
+            )}
           </div>
         </div>
 
