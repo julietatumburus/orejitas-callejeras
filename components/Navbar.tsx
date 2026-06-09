@@ -6,8 +6,7 @@ export default async function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-pink-200 bg-[#fdf6ec]/90 backdrop-blur">
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-        <Link href="/" className="flex items-center gap-2 text-lg font-bold text-pink-800">
-          <span className="text-2xl">🐾</span>
+        <Link href="/" className="text-lg font-bold text-pink-800">
           {settings.name}
         </Link>
         <div className="flex items-center gap-4 text-sm font-medium">
@@ -21,7 +20,7 @@ export default async function Navbar() {
             href="/adoptar"
             className="rounded-full bg-pink-700 px-4 py-2 text-white shadow-sm transition hover:bg-pink-800"
           >
-            Adoptá 🐾
+            Adoptá
           </Link>
         </div>
       </nav>

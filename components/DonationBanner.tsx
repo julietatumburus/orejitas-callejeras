@@ -20,7 +20,7 @@ export default function DonationBanner({ alias }: { alias: string }) {
     <div className="mt-10 rounded-3xl border border-pink-200 bg-gradient-to-r from-pink-100 to-[#f1ddcf] p-8 text-center shadow-sm">
       <p className="text-3xl">💗</p>
       <h3 className="mt-2 text-xl font-bold text-pink-800">Hacé tu donación</h3>
-      <p className="mt-1 text-stone-600">Tu aporte nos ayuda a seguir rescatando 🐾</p>
+      <p className="mt-1 text-stone-600">Tu aporte nos ayuda a seguir rescatando</p>
 
       <div className="mt-5 inline-flex flex-wrap items-center justify-center gap-3 rounded-full bg-white px-4 py-2 shadow-sm ring-1 ring-pink-200">
         <span className="text-sm text-stone-400">Alias</span>

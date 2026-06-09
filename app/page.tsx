@@ -20,9 +20,8 @@ export default async function Home() {
 
       {/* ---------- HERO (oscuro, rosa vino + letras crema) ---------- */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#b23c75] via-[#e0518f] to-[#f56fa3] text-[#fdf3e8]">
-        <FloatingPaws colorClass="text-white/15" />
+        <FloatingPaws colorClass="text-[#fdf3e8]/22" />
         <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center sm:py-32">
-          <span className="enter inline-block text-7xl animate-bob">🐾</span>
           <h1
             className="enter text-4xl font-extrabold tracking-tight sm:text-6xl"
             style={{ animationDelay: "0.1s" }}
@@ -43,7 +42,7 @@ export default async function Home() {
               href="/adoptar"
               className="rounded-full bg-[#f7ecdc] px-7 py-3.5 text-base font-bold text-pink-900 shadow-lg transition hover:scale-105 hover:bg-white"
             >
-              Adoptá 🐾
+              Adoptá
             </Link>
             {settings.whatsapp && (
               <a
@@ -79,7 +78,7 @@ export default async function Home() {
             <p className="mx-auto mt-5 max-w-3xl text-lg leading-relaxed text-stone-600">
               {settings.description} Trabajamos día a día para que cada animalito rescatado de la
               calle reciba atención veterinaria, cariño y, sobre todo, una familia que lo espere. La
-              adopción es responsable y gratuita: lo importante es el compromiso. 🐾
+              adopción es responsable y gratuita: lo importante es el compromiso.
             </p>
           </Reveal>
         </div>
@@ -90,7 +89,7 @@ export default async function Home() {
         <div className="mx-auto max-w-5xl px-4 py-20">
           <Reveal>
             <h2 className="text-center text-3xl font-bold text-pink-800">Cómo ayudar</h2>
-            <p className="mt-3 text-center text-stone-500">Hay muchas formas de sumar una patita 🐾</p>
+            <p className="mt-3 text-center text-stone-500">Hay muchas formas de sumar una patita</p>
           </Reveal>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {settings.ayuda.map((item, i) => (
@@ -144,9 +143,8 @@ export default async function Home() {
 
       {/* ---------- CTA final (oscuro) ---------- */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#e0518f] to-[#b23c75] text-[#fdf3e8]">
-        <FloatingPaws colorClass="text-white/15" />
+        <FloatingPaws colorClass="text-[#fdf3e8]/22" />
         <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-5 px-4 py-20 text-center">
-          <span className="text-5xl animate-wiggle">🐾</span>
           <h2 className="text-3xl font-bold sm:text-4xl">¿Listo para cambiar una vida?</h2>
           <p className="max-w-xl text-lg text-pink-100">
             Conocé a los perritos y gatitos que están esperando un hogar.
@@ -155,7 +153,7 @@ export default async function Home() {
             href="/adoptar"
             className="rounded-full bg-[#f7ecdc] px-8 py-4 text-base font-bold text-pink-900 shadow-lg transition hover:scale-105 hover:bg-white"
           >
-            Adoptá 🐾
+            Adoptá
           </Link>
         </div>
       </section>

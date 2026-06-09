@@ -21,6 +21,11 @@ html {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-12px); }
 }
+@keyframes paw-float {
+  0%   { transform: translateY(0) rotate(-10deg); }
+  50%  { transform: translateY(-22px) rotate(-2deg); }
+  100% { transform: translateY(0) rotate(-10deg); }
+}
 @keyframes drift-up {
   0%   { transform: translateY(110%) rotate(0deg); opacity: 0; }
   10%  { opacity: 0.5; }
@@ -40,6 +45,7 @@ html {
 .enter { animation: fade-up 0.8s ease both; }
 .animate-wiggle { animation: wiggle 1.1s ease-in-out infinite; transform-origin: bottom center; }
 .animate-bob { animation: bob 3s ease-in-out infinite; }
+.animate-paw-float { animation: paw-float 4.5s ease-in-out infinite; transform-origin: center; }
 .animate-drift { animation: drift-up linear infinite; }
 .animate-paw-step { animation: paw-step 1.4s ease-in-out infinite; }
 .animate-blob { animation: blob 9s ease-in-out infinite; }
@@ -60,6 +66,7 @@ html {
   .enter,
   .animate-wiggle,
   .animate-bob,
+  .animate-paw-float,
   .animate-drift,
   .animate-paw-step,
   .animate-blob {

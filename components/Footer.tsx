@@ -12,9 +12,7 @@ export default async function Footer() {
   return (
     <footer className="mt-auto border-t border-pink-200 bg-gradient-to-b from-[#fdf6ec] to-[#f1ddcf]/70">
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 px-4 py-12 text-center">
-        <p className="flex items-center gap-2 text-lg font-bold text-pink-800">
-          <span className="text-2xl">🐾</span> {settings.name}
-        </p>
+        <p className="text-lg font-bold text-pink-800">{settings.name}</p>
 
         <div className="flex flex-wrap items-start justify-center gap-7">
           {/* WhatsApp */}
@@ -103,7 +101,7 @@ export default async function Footer() {
 
         <div className="mt-2 h-px w-24 bg-pink-200" />
         <p className="text-xs text-stone-400">
-          © {new Date().getFullYear()} {settings.name} · Organización sin fines de lucro 🐾
+          © {new Date().getFullYear()} {settings.name} · Organización sin fines de lucro
         </p>
       </div>
     </footer>
