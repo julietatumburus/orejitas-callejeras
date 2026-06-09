@@ -6,6 +6,7 @@ import Image from "next/image";
 import type { Dog } from "@/lib/types";
 import { SEXO_LABEL, TAMANO_LABEL, ESTADO_LABEL, ESPECIE_LABEL, ESPECIE_EMOJI } from "@/lib/types";
 import DogForm from "./DogForm";
+import DogCard from "@/components/DogCard";
 import { deleteDog } from "./actions";
 
 const estadoStyle: Record<string, string> = {
@@ -14,11 +15,12 @@ const estadoStyle: Record<string, string> = {
   adoptado: "bg-stone-200 text-stone-600",
 };
 
-export default function AdminBoard({ dogs }: { dogs: Dog[] }) {
+export default function AdminBoard({ dogs, whatsapp }: { dogs: Dog[]; whatsapp: string }) {
   const router = useRouter();
   const [showNew, setShowNew] = useState(false);
   const [editing, setEditing] = useState<Dog | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [view, setView] = useState<"lista" | "preview">("lista");
 
   async function handleDelete(dog: Dog) {
     if (!confirm(`¿Borrar a "${dog.name}"? Esta acción no se puede deshacer.`)) return;
@@ -34,18 +36,39 @@ export default function AdminBoard({ dogs }: { dogs: Dog[] }) {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-bold text-pink-600">
           Adopciones <span className="text-base font-normal text-stone-400">({dogs.length})</span>
         </h1>
-        {!showNew && !editing && (
-          <button
-            onClick={() => setShowNew(true)}
-            className="rounded-full bg-pink-500 px-4 py-2 font-semibold text-white transition hover:bg-pink-600"
-          >
-            + Cargar adopción
-          </button>
-        )}
+        <div className="flex items-center gap-3">
+          {/* Toggle Lista / Vista previa */}
+          <div className="flex rounded-full bg-pink-50 p-1 ring-1 ring-pink-200">
+            <button
+              onClick={() => setView("lista")}
+              className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
+                view === "lista" ? "bg-pink-500 text-white" : "text-pink-700 hover:bg-pink-100"
+              }`}
+            >
+              Lista
+            </button>
+            <button
+              onClick={() => setView("preview")}
+              className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
+                view === "preview" ? "bg-pink-500 text-white" : "text-pink-700 hover:bg-pink-100"
+              }`}
+            >
+              Vista previa
+            </button>
+          </div>
+          {!showNew && !editing && (
+            <button
+              onClick={() => setShowNew(true)}
+              className="rounded-full bg-pink-500 px-4 py-2 font-semibold text-white transition hover:bg-pink-600"
+            >
+              + Cargar adopción
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Form de nuevo */}
@@ -67,8 +90,19 @@ export default function AdminBoard({ dogs }: { dogs: Dog[] }) {
       {/* Lista */}
       {dogs.length === 0 ? (
         <p className="rounded-xl bg-pink-100 p-8 text-center text-stone-600">
-          Todavía no hay adopciones cargadas. Cargá la primera 🐾
+          Todavía no hay adopciones cargadas. Cargá la primera.
         </p>
+      ) : view === "preview" ? (
+        <div>
+          <p className="mb-4 text-sm text-stone-500">
+            Así se ven las plaquitas en la web pública (se muestran todas, incluso las adoptadas).
+          </p>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {dogs.map((dog) => (
+              <DogCard key={dog.id} dog={dog} whatsapp={whatsapp} />
+            ))}
+          </div>
+        </div>
       ) : (
         <ul className="flex flex-col gap-3">
           {dogs.map((dog) => (
