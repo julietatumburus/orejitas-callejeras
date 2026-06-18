@@ -30,6 +30,7 @@ export async function requireStaff(): Promise<Profile> {
   const profile = await getProfile();
   if (!profile) redirect("/admin/login");
   if (!profile.enabled) redirect("/admin/pendiente");
+  if (profile.must_change_password) redirect("/admin/cambiar-clave");
   return profile;
 }
 

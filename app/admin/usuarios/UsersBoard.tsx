@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Profile, Role } from "@/lib/types";
 import { ROLES, ROLE_LABEL } from "@/lib/types";
-import { setUserEnabled, setUserRole } from "./actions";
+import { setUserEnabled, setUserRole, createUser, resetUserPassword } from "./actions";
 
 const roleBadge: Record<Role, string> = {
   superadmin: "bg-fuchsia-100 text-fuchsia-700",
@@ -16,8 +16,37 @@ export default function UsersBoard({ users, me }: { users: Profile[]; me: Profil
   const router = useRouter();
   const [busyId, setBusyId] = useState<string | null>(null);
 
+  // Alta de usuario
+  const [newEmail, setNewEmail] = useState("");
+  const [newRole, setNewRole] = useState<Role>("usuario");
+  const [creating, setCreating] = useState(false);
+  const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
+
   const pendientes = users.filter((u) => !u.enabled);
   const activos = users.filter((u) => u.enabled);
+
+  async function handleCreate(e: React.FormEvent) {
+    e.preventDefault();
+    setMsg(null);
+    setCreating(true);
+    const res = await createUser(newEmail, newRole);
+    setCreating(false);
+    if (!res.ok) return setMsg({ ok: false, text: res.error ?? "Error" });
+    setMsg({ ok: true, text: `¡Listo! Le mandamos la clave temporal a ${newEmail.trim()}.` });
+    setNewEmail("");
+    setNewRole("usuario");
+    router.refresh();
+  }
+
+  async function handleReset(u: Profile) {
+    if (!confirm(`¿Resetear la clave de ${u.email}? Le va a llegar una nueva clave temporal por mail.`))
+      return;
+    setBusyId(u.id);
+    const res = await resetUserPassword(u.id);
+    setBusyId(null);
+    if (!res.ok) return alert(res.error);
+    alert("Listo, le enviamos una clave temporal nueva por mail.");
+  }
 
   async function toggleEnabled(u: Profile) {
     setBusyId(u.id);
@@ -72,6 +101,16 @@ export default function UsersBoard({ users, me }: { users: Profile[]; me: Profil
           {isSuper && me.role !== "superadmin" && <option value="superadmin">Superadmin</option>}
         </select>
 
+        {u.enabled && !locked && (
+          <button
+            onClick={() => handleReset(u)}
+            disabled={busyId === u.id}
+            className="rounded-full border border-pink-300 px-3 py-1.5 text-sm font-medium text-pink-700 transition hover:bg-pink-50 disabled:opacity-50"
+          >
+            Resetear clave
+          </button>
+        )}
+
         <button
           onClick={() => toggleEnabled(u)}
           disabled={locked || busyId === u.id}
@@ -90,6 +129,52 @@ export default function UsersBoard({ users, me }: { users: Profile[]; me: Profil
   return (
     <div className="flex flex-col gap-8">
       <h1 className="text-2xl font-bold text-pink-600">Usuarios</h1>
+
+      {/* Alta de usuario */}
+      <section className="rounded-2xl border border-pink-200 bg-white p-5 shadow-sm">
+        <h2 className="mb-1 text-lg font-bold text-stone-800">Agregar usuario</h2>
+        <p className="mb-4 text-sm text-stone-500">
+          Se crea la cuenta y le llega un mail con una clave temporal (vence en 15 min) que deberá
+          cambiar al ingresar.
+        </p>
+        <form onSubmit={handleCreate} className="flex flex-col gap-3 sm:flex-row sm:items-end">
+          <label className="flex flex-1 flex-col gap-1">
+            <span className="text-sm font-medium text-stone-700">Email</span>
+            <input
+              type="email"
+              required
+              value={newEmail}
+              onChange={(e) => setNewEmail(e.target.value)}
+              placeholder="persona@email.com"
+              className="rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
+            />
+          </label>
+          <label className="flex flex-col gap-1">
+            <span className="text-sm font-medium text-stone-700">Rol</span>
+            <select
+              value={newRole}
+              onChange={(e) => setNewRole(e.target.value as Role)}
+              className="rounded-lg border border-stone-300 px-3 py-2"
+            >
+              {roleOptions.map((r) => (
+                <option key={r} value={r}>
+                  {ROLE_LABEL[r]}
+                </option>
+              ))}
+            </select>
+          </label>
+          <button
+            type="submit"
+            disabled={creating}
+            className="rounded-full bg-pink-500 px-5 py-2.5 font-semibold text-white transition hover:bg-pink-600 disabled:opacity-60"
+          >
+            {creating ? "Creando…" : "Crear y enviar mail"}
+          </button>
+        </form>
+        {msg && (
+          <p className={`mt-3 text-sm ${msg.ok ? "text-green-600" : "text-red-600"}`}>{msg.text}</p>
+        )}
+      </section>
 
       <section>
         <h2 className="mb-3 flex items-center gap-2 text-lg font-bold text-stone-800">
