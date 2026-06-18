@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import PasswordField from "@/components/PasswordField";
 import { clearMustChange } from "./actions";
 import { signOut } from "../actions";
 
@@ -73,12 +74,11 @@ export default function ChangePasswordForm({ expired }: { expired: boolean }) {
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div className="flex flex-col gap-1">
           <label className="text-sm font-medium text-stone-700">Nueva contraseña</label>
-          <input
-            type="password"
+          <PasswordField
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
+            autoComplete="new-password"
           />
         </div>
 
@@ -97,12 +97,11 @@ export default function ChangePasswordForm({ expired }: { expired: boolean }) {
 
         <div className="flex flex-col gap-1">
           <label className="text-sm font-medium text-stone-700">Repetir contraseña</label>
-          <input
-            type="password"
+          <PasswordField
             required
             value={confirm}
             onChange={(e) => setConfirm(e.target.value)}
-            className="rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-200"
+            autoComplete="new-password"
           />
           {confirm.length > 0 && !matches && (
             <span className="text-xs text-red-600">Las contraseñas no coinciden.</span>

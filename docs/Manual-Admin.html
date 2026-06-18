@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Manual Admin — Orejitas Callejeras</title>
+<style>
+  @page { size: A4; margin: 16mm; }
+  * { font-family: "Segoe UI", Arial, sans-serif; box-sizing: border-box; }
+  body { color: #44403c; line-height: 1.5; font-size: 12.5px; margin: 0; }
+  h1 { color: #be185d; font-size: 26px; margin: 0 0 2px; }
+  h2 { color: #be185d; border-bottom: 2px solid #fbcfe8; padding-bottom: 4px; margin: 26px 0 8px; font-size: 18px; }
+  h3 { color: #db2777; font-size: 14px; margin: 14px 0 2px; }
+  a { color: #db2777; word-break: break-all; }
+  code { background: #fdf2f8; color: #be185d; padding: 1px 6px; border-radius: 6px; font-size: 11.5px; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; }
+  th, td { border: 1px solid #fbcfe8; padding: 7px 9px; text-align: left; font-size: 11.5px; }
+  th { background: #fdf2f8; color: #9d174d; }
+  .tip { background: #fdf6ec; border-left: 4px solid #ec4899; padding: 8px 12px; border-radius: 6px; margin: 10px 0; }
+  ol li, ul li { margin: 3px 0; }
+  hr { border: none; border-top: 1px solid #f1ddcf; margin: 18px 0; }
+  .muted { text-align: center; color: #a8a29e; font-size: 11px; margin-top: 28px; }
+  .note { background:#fff7fb; border:1px solid #fbcfe8; border-radius:8px; padding:8px 12px; font-size:12px; }
+</style>
+</head>
+<body>
+
+<h1>🐾 Orejitas Callejeras — Manual para Administradores</h1>
+<p>Guía rápida para usar el panel: cargar perritos y gatitos en adopción, editar la información de la web y gestionar usuarios.</p>
+<p class="note"><strong>Reemplazá el dominio si el tuyo es distinto.</strong> En este manual usamos <code>https://orejitas-callejeras.vercel.app</code> como ejemplo.</p>
+
+<h2>1. Las direcciones (links)</h2>
+<h3>Web pública (la ve cualquiera, sin usuario)</h3>
+<table>
+  <tr><th>Página</th><th>Link</th></tr>
+  <tr><td>Inicio</td><td><code>https://orejitas-callejeras.vercel.app</code></td></tr>
+  <tr><td>En adopción</td><td><code>https://orejitas-callejeras.vercel.app/adoptar</code></td></tr>
+  <tr><td>Ser tránsito</td><td><code>https://orejitas-callejeras.vercel.app/transito</code></td></tr>
+  <tr><td>Concientización</td><td><code>https://orejitas-callejeras.vercel.app/concientizacion</code></td></tr>
+</table>
+<h3>Panel de administración (con usuario y contraseña)</h3>
+<table>
+  <tr><th>Acción</th><th>Link</th></tr>
+  <tr><td>Ingresar</td><td><code>https://orejitas-callejeras.vercel.app/admin/login</code></td></tr>
+  <tr><td>Panel</td><td><code>https://orejitas-callejeras.vercel.app/admin</code></td></tr>
+</table>
+
+<h2>2. Ingresar al panel</h2>
+<ol>
+  <li>Entrá a <code>/admin/login</code>.</li>
+  <li>Escribí tu <strong>email</strong> y <strong>contraseña</strong>. Podés tocar el 👁️ para ver lo que escribís.</li>
+</ol>
+<h3>La primera vez (o si te resetearon la clave)</h3>
+<ul>
+  <li>Te llega un <strong>mail con una clave temporal</strong>.</li>
+  <li>Esa clave <strong>vence a los 15 minutos</strong> y al entrar te pide <strong>crear tu propia contraseña</strong>.</li>
+  <li>La nueva debe tener <strong>8 caracteres, 1 mayúscula, 1 número y 1 símbolo</strong> (se van tildando en pantalla). Esa ya no vence.</li>
+</ul>
+<div class="tip">💡 ¿Olvidaste la contraseña? En el login tocá <strong>“¿Olvidaste tu contraseña?”</strong> y te llega una clave temporal por mail.</div>
+
+<h2>3. Cargar una adopción 🐶🐱</h2>
+<ol>
+  <li>En el panel, entrá a <strong>Publicaciones</strong> y tocá <strong>“+ Cargar adopción”</strong>.</li>
+  <li>Completá los datos:
+    <ul>
+      <li><strong>Tipo:</strong> Perro o Gato.</li>
+      <li><strong>Nombre.</strong></li>
+      <li><strong>WhatsApp de contacto (obligatorio):</strong> el número de quien tiene ese rescate, formato internacional sin <code>+</code> ni espacios. Ej: <code>5493815551234</code>.</li>
+      <li><strong>Edad, Sexo, Tamaño.</strong></li>
+      <li><strong>Estado:</strong> Disponible / En proceso / Adoptado.</li>
+      <li><strong>Está castrado/a</strong> (casilla).</li>
+      <li><strong>Foto</strong> y <strong>Descripción / historia.</strong></li>
+    </ul>
+  </li>
+  <li>Tocá <strong>“Cargar adopción”</strong>. ¡Ya aparece en la web!</li>
+</ol>
+<div class="tip">📸 La foto se ve mejor <strong>cuadrada</strong> y con buena luz. El botón verde de WhatsApp de cada plaquita usa el número que cargaste en esa adopción.</div>
+<h3>Vista previa</h3>
+<p>Arriba a la derecha hay un interruptor <strong>“Lista / Vista previa”</strong>. En <strong>Vista previa</strong> ves las plaquitas tal cual salen en la web.</p>
+
+<h2>4. Editar, borrar o marcar como adoptado</h2>
+<ul>
+  <li>En <strong>Publicaciones</strong> (modo Lista), cada adopción tiene <strong>“Editar”</strong> y <strong>“Borrar”</strong>.</li>
+  <li>Para que deje de ofrecerse sin perderla: editala y poné <strong>Estado = “Adoptado”</strong> (queda “¡Ya encontró su hogar!”).</li>
+  <li><strong>Borrar</strong> elimina la publicación y su foto de forma permanente.</li>
+</ul>
+
+<h2>5. Editar la web (Configuración)</h2>
+<p>Panel → <strong>Configuración</strong> (Admin). Podés cambiar:</p>
+<ul>
+  <li><strong>Textos del inicio:</strong> nombre, eslogan y descripción.</li>
+  <li><strong>Contacto:</strong> Instagram y Facebook (el botón “Contactarnos” lleva a Instagram).</li>
+  <li><strong>Donaciones:</strong> el <strong>alias</strong> para transferencias (con botón “Copiar”).</li>
+  <li><strong>Tarjetas “Cómo ayudar”.</strong></li>
+</ul>
+<p>Tocá <strong>“Guardar cambios”</strong> y se actualiza la web al instante.</p>
+
+<h2>6. Gestionar usuarios</h2>
+<p>Panel → <strong>Usuarios</strong>.</p>
+<h3>Crear un usuario</h3>
+<ol>
+  <li>Escribí el <strong>email</strong> de la persona y tocá <strong>“Crear usuario”</strong>.</li>
+  <li>Le llega un <strong>mail con clave temporal</strong> para que entre y cree su contraseña.</li>
+</ol>
+<table>
+  <tr><th>Botón</th><th>Qué hace</th></tr>
+  <tr><td>Toggle Activo/Inactivo</td><td>Permite o bloquea el acceso de esa persona.</td></tr>
+  <tr><td>Resetear clave</td><td>Le reenvía por mail una nueva clave temporal (útil si no le llegó).</td></tr>
+  <tr><td>Eliminar</td><td>Borra la cuenta de forma permanente.</td></tr>
+</table>
+<div class="tip">🔒 El <strong>Superadmin</strong> es único y no aparece en la lista.</div>
+
+<h2>7. Preguntas frecuentes</h2>
+<p><strong>No me llegó el mail.</strong> Revisá spam; si no, que un admin toque “Resetear clave”.</p>
+<p><strong>¿Cómo contacta la gente para adoptar?</strong> Cada plaquita tiene un botón de WhatsApp que abre el chat con un mensaje ya escrito hacia el número de ese rescate.</p>
+<p><strong>¿Puedo cambiar los textos sin tocar código?</strong> Sí, desde <strong>Configuración</strong>.</p>
+
+<p class="muted">Orejitas Callejeras · Manual para administradores · Tucumán, Argentina 🐾</p>
+
+</body>
+</html>
