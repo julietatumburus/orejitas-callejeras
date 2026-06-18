@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -154,6 +155,50 @@ export default async function ConcientizacionPage() {
                   </li>
                 ))}
               </ol>
+            </article>
+          </Reveal>
+
+          {/* Antes y después */}
+          <Reveal>
+            <article>
+              <h2 className="text-2xl font-bold text-pink-700">Antes y después de nuestros rescatados</h2>
+              <p className="mt-2 text-stone-600">
+                Con atención veterinaria, cuidado y mucho amor, esta transformación es posible. Vos
+                podés marcar la diferencia.
+              </p>
+              <div className="mt-6 flex flex-col gap-6">
+                {[
+                  { antes: "/antes-despues/antes-1.jpeg", despues: "/antes-despues/despues-1.jpeg" },
+                  { antes: "/antes-despues/antes-2.jpeg", despues: "/antes-despues/despues-2.jpeg" },
+                ].map((par, i) => (
+                  <div key={i} className="grid grid-cols-2 gap-3 sm:gap-5">
+                    <div className="relative aspect-square overflow-hidden rounded-2xl shadow-sm">
+                      <Image
+                        src={par.antes}
+                        alt="Rescatado antes"
+                        fill
+                        sizes="(max-width: 640px) 45vw, 340px"
+                        className="object-cover"
+                      />
+                      <span className="absolute left-2 top-2 rounded-full bg-stone-900/70 px-2.5 py-1 text-xs font-semibold text-white">
+                        Antes
+                      </span>
+                    </div>
+                    <div className="relative aspect-square overflow-hidden rounded-2xl shadow-sm">
+                      <Image
+                        src={par.despues}
+                        alt="Rescatado después"
+                        fill
+                        sizes="(max-width: 640px) 45vw, 340px"
+                        className="object-cover"
+                      />
+                      <span className="absolute left-2 top-2 rounded-full bg-pink-500 px-2.5 py-1 text-xs font-semibold text-white">
+                        Después
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </article>
           </Reveal>
 
