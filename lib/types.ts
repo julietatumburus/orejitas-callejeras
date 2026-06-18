@@ -79,6 +79,7 @@ export interface Dog {
   sex: Sexo;
   size: Tamano;
   neutered: boolean;
+  whatsapp: string | null;
   description: string | null;
   status: Estado;
   photo_url: string | null;

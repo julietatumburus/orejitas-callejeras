@@ -5,7 +5,6 @@ import FloatingPaws from "@/components/FloatingPaws";
 import Reveal from "@/components/Reveal";
 import DonationBanner from "@/components/DonationBanner";
 import AdoptionCarousel from "@/components/AdoptionCarousel";
-import { whatsappGeneralLink } from "@/lib/config";
 import { getSettings } from "@/lib/settings";
 import { createClient } from "@/lib/supabase/server";
 import type { Dog } from "@/lib/types";
@@ -57,9 +56,9 @@ export default async function Home() {
             >
               Adoptá
             </Link>
-            {settings.whatsapp && (
+            {settings.instagram && (
               <a
-                href={whatsappGeneralLink(settings.whatsapp)}
+                href={settings.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full border border-[#f7ecdc]/40 px-7 py-3.5 text-base font-semibold text-[#f7ecdc] transition hover:bg-white/10"
@@ -91,11 +90,19 @@ export default async function Home() {
             <h2 className="text-3xl font-bold text-pink-800">Quiénes somos</h2>
           </Reveal>
           <Reveal delay={150}>
-            <p className="mx-auto mt-5 max-w-3xl text-lg leading-relaxed text-stone-600">
-              {settings.description} Trabajamos día a día para que cada animalito rescatado de la
-              calle reciba atención veterinaria, cariño y, sobre todo, una familia que lo espere. La
-              adopción es responsable y gratuita: lo importante es el compromiso.
-            </p>
+            <div className="mx-auto mt-5 flex max-w-3xl flex-col gap-4 text-lg leading-relaxed text-stone-600">
+              <p>
+                Orejitas Callejeras es una fundación de rescate animal que trabaja en Tucumán
+                ayudando perros y gatos en situación de abandono, maltrato o riesgo.
+              </p>
+              <p>
+                No contamos con refugio propio. Funcionamos gracias al compromiso de rescatistas,
+                tránsitos, voluntarios y colaboradores.
+              </p>
+              <p>
+                Nuestro trabajo se basa en la organización, la responsabilidad y el trabajo en equipo.
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>

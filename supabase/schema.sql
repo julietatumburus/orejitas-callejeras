@@ -12,6 +12,7 @@ create table if not exists public.dogs (
   sex         text not null check (sex in ('macho','hembra')),
   size        text not null check (size in ('pequeño','mediano','grande')),
   neutered    boolean not null default false,   -- ¿está castrado/a?
+  whatsapp    text,                              -- WhatsApp de contacto de este rescate (opcional)
   description text,
   status      text not null default 'disponible'
               check (status in ('disponible','en_proceso','adoptado')),

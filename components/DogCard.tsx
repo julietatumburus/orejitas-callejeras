@@ -70,9 +70,13 @@ export default function DogCard({ dog, whatsapp }: { dog: Dog; whatsapp: string 
             <p className="text-center text-sm font-medium text-stone-500">
               ¡Ya encontró su hogar! 🏡
             </p>
-          ) : (
-            <WhatsAppButton whatsapp={whatsapp} dogName={dog.name} emoji={ESPECIE_EMOJI[dog.species]} />
-          )}
+          ) : dog.whatsapp || whatsapp ? (
+            <WhatsAppButton
+              whatsapp={dog.whatsapp || whatsapp}
+              dogName={dog.name}
+              emoji={ESPECIE_EMOJI[dog.species]}
+            />
+          ) : null}
         </div>
       </div>
     </article>

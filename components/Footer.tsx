@@ -1,4 +1,3 @@
-import { whatsappGeneralLink } from "@/lib/config";
 import { getSettings } from "@/lib/settings";
 
 const circle =
@@ -15,24 +14,6 @@ export default async function Footer() {
         <p className="text-lg font-bold text-pink-800">{settings.name}</p>
 
         <div className="flex flex-wrap items-start justify-center gap-7">
-          {/* WhatsApp */}
-          {settings.whatsapp && (
-            <a
-              href={whatsappGeneralLink(settings.whatsapp)}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-              className={item}
-            >
-              <span className={`${circle} bg-[#25D366]`}>
-                <svg viewBox="0 0 32 32" className="h-6 w-6 fill-current" aria-hidden="true">
-                  <path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.7L.5 31.5l8-2.1c2.2 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5C3.9 20.5 3.2 18.3 3.2 16 3.2 8.9 8.9 3.2 16 3.2 23.1 3.2 28.8 8.9 28.8 16S23.1 28.5 16 28.5zm7.4-9.6c-.4-.2-2.4-1.2-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1.1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.7-.6-.6-.9-.6h-.7c-.2 0-.6.1-.9.5-.3.4-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.5 3.8 6 5.3.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 2.1-.9 2.4-1.7.3-.8.3-1.6.2-1.7-.1-.2-.3-.2-.7-.4z" />
-                </svg>
-              </span>
-              <span className={label}>WhatsApp</span>
-            </a>
-          )}
-
           {/* Instagram */}
           {settings.instagram && (
             <a
@@ -57,26 +38,6 @@ export default async function Footer() {
                 </svg>
               </span>
               <span className={label}>Instagram</span>
-            </a>
-          )}
-
-          {/* Email */}
-          {settings.email && (
-            <a href={`mailto:${settings.email}`} aria-label="Email" className={item}>
-              <span className={`${circle} bg-gradient-to-tr from-pink-500 to-pink-400`}>
-                <svg
-                  viewBox="0 0 24 24"
-                  className="h-6 w-6 fill-none stroke-white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <rect x="3" y="5" width="18" height="14" rx="2.5" />
-                  <path d="m3.5 7 8.5 6 8.5-6" />
-                </svg>
-              </span>
-              <span className={label}>Email</span>
             </a>
           )}
 

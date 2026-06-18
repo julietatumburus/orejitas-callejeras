@@ -18,6 +18,7 @@ function parseFields(formData: FormData) {
   const size = String(formData.get("size") ?? "");
   const status = String(formData.get("status") ?? "disponible");
   const neutered = formData.has("neutered");
+  const whatsapp = String(formData.get("whatsapp") ?? "").replace(/[^0-9]/g, "");
   const description = String(formData.get("description") ?? "").trim();
 
   if (!name) return { error: "El nombre es obligatorio." as const };
@@ -34,6 +35,7 @@ function parseFields(formData: FormData) {
       sex: sex as Sexo,
       size: size as Tamano,
       neutered,
+      whatsapp: whatsapp || null,
       status: status as Estado,
       description: description || null,
     },

@@ -120,6 +120,19 @@ export default function DogForm({
 
         <label className="flex flex-col gap-1">
           <span className="text-sm font-medium text-stone-700">
+            WhatsApp de contacto <span className="text-stone-400">(opcional)</span>
+          </span>
+          <input
+            name="whatsapp"
+            inputMode="numeric"
+            placeholder="Ej: 5493815551234"
+            defaultValue={dog?.whatsapp ?? ""}
+            className={inputClass}
+          />
+        </label>
+
+        <label className="flex flex-col gap-1">
+          <span className="text-sm font-medium text-stone-700">
             Foto {isEdit && <span className="text-stone-400">(dejá vacío para mantener la actual)</span>}
           </span>
           <input

@@ -16,6 +16,9 @@ export default async function Navbar() {
           <Link href="/#ayudar" className="hidden text-stone-600 hover:text-pink-700 sm:inline">
             Cómo ayudar
           </Link>
+          <Link href="/transito" className="hidden text-stone-600 hover:text-pink-700 sm:inline">
+            Ser tránsito
+          </Link>
           <Link href="/concientizacion" className="hidden text-stone-600 hover:text-pink-700 sm:inline">
             Concientización
           </Link>

@@ -202,6 +202,29 @@ export default async function ConcientizacionPage() {
             </article>
           </Reveal>
 
+          {/* Galería finales felices */}
+          <Reveal>
+            <article>
+              <h2 className="text-2xl font-bold text-pink-700">Historias con final feliz</h2>
+              <p className="mt-2 text-stone-600">
+                Gracias a los tránsitos, adoptantes y colaboradores que hacen posible cada rescate.
+              </p>
+              <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {["feliz-0", "feliz-1", "feliz-2", "feliz-3", "feliz-4", "feliz-5"].map((name) => (
+                  <div key={name} className="relative aspect-square overflow-hidden rounded-2xl shadow-sm">
+                    <Image
+                      src={`/galeria/${name}.png`}
+                      alt="Rescatado feliz"
+                      fill
+                      sizes="(max-width: 640px) 45vw, 220px"
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            </article>
+          </Reveal>
+
           {/* CTA */}
           <Reveal>
             <div className="rounded-3xl bg-gradient-to-br from-[#e0518f] to-[#b23c75] p-8 text-center text-[#fdf3e8]">
