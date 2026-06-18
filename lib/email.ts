@@ -46,30 +46,37 @@ function tempBlock(password: string) {
     <p style="color:#9f1239;font-size:14px"><strong>Importante:</strong> vence en 15 minutos y deberás cambiarla la primera vez que ingreses.</p>`;
 }
 
+async function send(to: string, subject: string, html: string) {
+  const { error } = await resend().emails.send({ from: from(), to, subject, html });
+  // Resend NO tira excepción: devuelve { error }. Lo convertimos en throw.
+  if (error) {
+    const msg = (error as { message?: string }).message ?? JSON.stringify(error);
+    throw new Error(msg);
+  }
+}
+
 export async function sendNewUserEmail(to: string, tempPassword: string) {
-  return resend().emails.send({
-    from: from(),
+  return send(
     to,
-    subject: `Tu acceso al panel de ${ORG.name}`,
-    html: shell(
+    `Tu acceso al panel de ${ORG.name}`,
+    shell(
       "¡Te dieron acceso al panel!",
       `<p>Se creó tu cuenta para administrar las adopciones de <strong>${ORG.name}</strong>.</p>
        <p>Ingresá con tu email y esta contraseña temporal:</p>
        ${tempBlock(tempPassword)}`,
     ),
-  });
+  );
 }
 
 export async function sendResetEmail(to: string, tempPassword: string) {
-  return resend().emails.send({
-    from: from(),
+  return send(
     to,
-    subject: `Restablecer tu contraseña — ${ORG.name}`,
-    html: shell(
+    `Restablecer tu contraseña — ${ORG.name}`,
+    shell(
       "Restablecimiento de contraseña",
       `<p>Generamos una contraseña temporal para que vuelvas a ingresar:</p>
        ${tempBlock(tempPassword)}
        <p style="font-size:14px;color:#78716c">Si no pediste esto, podés ignorar este mail.</p>`,
     ),
-  });
+  );
 }

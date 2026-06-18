@@ -47,6 +47,24 @@ export async function setUserRole(id: string, role: Role): Promise<ActionResult>
   return { ok: true };
 }
 
+/** Elimina un usuario por completo (auth + perfil). */
+export async function deleteUser(id: string): Promise<ActionResult> {
+  const me = await getProfile();
+  if (!me || !me.enabled || !isManager(me.role)) return { ok: false, error: "No autorizado." };
+  if (me.id === id) return { ok: false, error: "No podés eliminar tu propia cuenta." };
+
+  const admin = createAdminClient();
+  const { data: prof } = await admin.from("profiles").select("role").eq("id", id).maybeSingle();
+  if (prof?.role === "superadmin") return { ok: false, error: "No se puede eliminar al superadmin." };
+
+  // Borra el usuario de Auth; el perfil se elimina solo (on delete cascade).
+  const { error } = await admin.auth.admin.deleteUser(id);
+  if (error) return { ok: false, error: "No se pudo eliminar el usuario." };
+
+  revalidatePath("/admin/usuarios");
+  return { ok: true };
+}
+
 /** Crea un usuario con clave temporal y le manda el mail de bienvenida. */
 export async function createUser(emailRaw: string, role: Role): Promise<ActionResult> {
   const me = await getProfile();
@@ -91,8 +109,11 @@ export async function createUser(emailRaw: string, role: Role): Promise<ActionRe
   // 3) Enviar el mail con la clave temporal
   try {
     await sendNewUserEmail(email, tempPassword);
-  } catch {
-    return { ok: false, error: "Usuario creado, pero falló el envío del mail. Reseteá la clave para reenviarlo." };
+  } catch (e) {
+    return {
+      ok: false,
+      error: `Usuario creado, pero falló el envío del mail: ${(e as Error).message}`,
+    };
   }
 
   revalidatePath("/admin/usuarios");
@@ -123,8 +144,8 @@ export async function resetUserPassword(id: string): Promise<ActionResult> {
 
   try {
     await sendResetEmail(prof.email, tempPassword);
-  } catch {
-    return { ok: false, error: "Clave reseteada, pero falló el envío del mail." };
+  } catch (e) {
+    return { ok: false, error: `Clave reseteada, pero falló el envío del mail: ${(e as Error).message}` };
   }
 
   revalidatePath("/admin/usuarios");
