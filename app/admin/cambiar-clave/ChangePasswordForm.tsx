@@ -55,7 +55,14 @@ export default function ChangePasswordForm({ expired }: { expired: boolean }) {
     const { error: updErr } = await supabase.auth.updateUser({ password });
     if (updErr) {
       setLoading(false);
-      return setError("No se pudo actualizar la contraseña. Probá con otra.");
+      const m = updErr.message?.toLowerCase() ?? "";
+      if (m.includes("different from the old"))
+        return setError("La contraseña nueva no puede ser igual a la temporal. Elegí otra.");
+      if (m.includes("at least"))
+        return setError("La contraseña es muy corta para Supabase. Usá una más larga.");
+      if (m.includes("weak") || m.includes("pwned") || m.includes("leaked"))
+        return setError("Esa contraseña es muy común/insegura. Probá con otra.");
+      return setError(`No se pudo actualizar: ${updErr.message}`);
     }
     const res = await clearMustChange();
     setLoading(false);

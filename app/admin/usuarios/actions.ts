@@ -97,7 +97,7 @@ export async function createUser(emailRaw: string, role: Role): Promise<ActionRe
       role,
       enabled: true,
       must_change_password: true,
-      temp_password_expires_at: tempExpiry(),
+      temp_password_expires_at: null, // alta nueva: la clave temporal NO expira
       email,
     })
     .eq("id", created.user.id);

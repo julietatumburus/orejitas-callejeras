@@ -36,8 +36,7 @@ export async function updateSession(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const isAdmin = path.startsWith("/admin");
   // Páginas del panel accesibles sin estar logueado/habilitado
-  const isPublicAuth =
-    path === "/admin/login" || path === "/admin/signup" || path === "/admin/recuperar";
+  const isPublicAuth = path === "/admin/login" || path === "/admin/recuperar";
 
   // Sin sesión e intentando entrar al panel -> al login
   if (isAdmin && !isPublicAuth && !user) {
