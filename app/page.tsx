@@ -4,15 +4,28 @@ import Footer from "@/components/Footer";
 import FloatingPaws from "@/components/FloatingPaws";
 import Reveal from "@/components/Reveal";
 import DonationBanner from "@/components/DonationBanner";
+import AdoptionCarousel from "@/components/AdoptionCarousel";
 import { whatsappGeneralLink } from "@/lib/config";
 import { getSettings } from "@/lib/settings";
+import { createClient } from "@/lib/supabase/server";
+import type { Dog } from "@/lib/types";
 
 const AYUDA_ICONS = ["🏠", "🛏️", "💖", "📣"];
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const settings = await getSettings();
+  const supabase = await createClient();
+  const [settings, { data: dogsData }] = await Promise.all([
+    getSettings(),
+    supabase
+      .from("dogs")
+      .select("*")
+      .neq("status", "adoptado")
+      .order("created_at", { ascending: false })
+      .limit(12),
+  ]);
+  const dogs = (dogsData ?? []) as Dog[];
 
   return (
     <>
@@ -64,6 +77,9 @@ export default async function Home() {
           </svg>
         </div>
       </section>
+
+      {/* ---------- Carrusel de adopciones ---------- */}
+      <AdoptionCarousel dogs={dogs} whatsapp={settings.whatsapp} />
 
       {/* ---------- Quiénes somos ---------- */}
       <section id="nosotros" className="bg-[#fdf6ec]">
