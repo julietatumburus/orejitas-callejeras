@@ -22,6 +22,7 @@ function parseFields(formData: FormData) {
   const description = String(formData.get("description") ?? "").trim();
 
   if (!name) return { error: "El nombre es obligatorio." as const };
+  if (!whatsapp) return { error: "El WhatsApp de contacto es obligatorio." as const };
   if (!ESPECIES.includes(species as Especie)) return { error: "Tipo inválido." as const };
   if (!SEXOS.includes(sex as Sexo)) return { error: "Sexo inválido." as const };
   if (!TAMANOS.includes(size as Tamano)) return { error: "Tamaño inválido." as const };
