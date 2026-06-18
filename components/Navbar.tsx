@@ -16,6 +16,9 @@ export default async function Navbar() {
           <Link href="/#ayudar" className="hidden text-stone-600 hover:text-pink-700 sm:inline">
             Cómo ayudar
           </Link>
+          <Link href="/concientizacion" className="hidden text-stone-600 hover:text-pink-700 sm:inline">
+            Concientización
+          </Link>
           <Link
             href="/adoptar"
             className="rounded-full bg-pink-700 px-4 py-2 text-white shadow-sm transition hover:bg-pink-800"
