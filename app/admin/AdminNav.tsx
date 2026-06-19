@@ -21,6 +21,9 @@ export default function AdminNav({ role, email }: { role: Role; email: string | 
           </Link>
           <nav className="flex items-center gap-4 text-sm font-medium">
             <Link href="/admin" className="text-stone-600 hover:text-pink-600">
+              Inicio
+            </Link>
+            <Link href="/admin/publicaciones" className="text-stone-600 hover:text-pink-600">
               Publicaciones
             </Link>
             {manager && (

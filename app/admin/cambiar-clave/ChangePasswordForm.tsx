@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import PasswordField from "@/components/PasswordField";
+import LoadingOverlay from "@/components/LoadingOverlay";
 import { clearMustChange } from "./actions";
 import { signOut } from "../actions";
 
@@ -65,15 +66,19 @@ export default function ChangePasswordForm({ expired }: { expired: boolean }) {
       return setError(`No se pudo actualizar: ${updErr.message}`);
     }
     const res = await clearMustChange();
-    setLoading(false);
-    if (!res.ok) return setError(res.error ?? "Ocurrió un error.");
+    if (!res.ok) {
+      setLoading(false);
+      return setError(res.error ?? "Ocurrió un error.");
+    }
 
+    // Dejamos el loader hasta que cargue el panel
     router.push("/admin");
     router.refresh();
   }
 
   return (
     <>
+      <LoadingOverlay show={loading} text="Entrando…" />
       <h1 className="mb-1 text-center text-xl font-bold text-stone-800">Creá tu contraseña</h1>
       <p className="mb-6 text-center text-sm text-stone-500">
         Por seguridad, definí una contraseña nueva para tu cuenta.

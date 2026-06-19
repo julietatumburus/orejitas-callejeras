@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import PasswordField from "@/components/PasswordField";
+import LoadingOverlay from "@/components/LoadingOverlay";
 import { ORG } from "@/lib/config";
 
 export default function LoginPage() {
@@ -34,6 +35,7 @@ export default function LoginPage() {
 
   return (
     <main className="flex flex-1 items-center justify-center px-4 py-16">
+      <LoadingOverlay show={loading} text="Ingresando…" />
       <div className="w-full max-w-sm rounded-2xl border border-pink-200 bg-white p-8 shadow-sm">
         <Link href="/" className="mb-6 block text-center text-lg font-bold text-pink-600">
           🐾 {ORG.name}
